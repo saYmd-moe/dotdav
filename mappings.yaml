@@ -1,0 +1,7 @@
+files:
+  .config/fish:
+    default: default/fish
+  .config/niri:
+    default: default/niri
+  .gitconfig:
+    default: default/.gitconfig

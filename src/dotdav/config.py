@@ -3,6 +3,7 @@ import yaml
 from pathlib import Path
 
 CONFIG_FILE = Path("config.yaml")
+LOCAL_CONFIG_FILE = Path("config.local.yaml")
 MAPPINGS_FILE = Path("mappings.yaml")
 REPO_DIR = Path("repo")
 
@@ -18,12 +19,28 @@ class Config:
         self.load()
 
     def load(self):
+        # Load base config
         if CONFIG_FILE.exists():
             with open(CONFIG_FILE, "r") as f:
                 self.data.update(yaml.safe_load(f) or {})
+        
+        # Load local config overrides
+        if LOCAL_CONFIG_FILE.exists():
+            with open(LOCAL_CONFIG_FILE, "r") as f:
+                local_data = yaml.safe_load(f) or {}
+                self.data.update(local_data)
 
     def save(self):
-        with open(CONFIG_FILE, "w") as f:
+        # Always save changes to local config to avoid polluting shared config
+        # We need to read existing local config first to preserve keys we might not track in self.data 
+        # (though currently self.data seems to hold everything)
+        # Ideally, we only save what is different from defaults or base? 
+        # For simple implementation: save all current state to local config.
+        # OR: To be cleaner, we might want to only save *changed* values, 
+        # but tracking changes is complex. 
+        # Let's save the entire current state to local config as it overrides everything anyway.
+        
+        with open(LOCAL_CONFIG_FILE, "w") as f:
             yaml.safe_dump(self.data, f)
     
     def get(self, key):

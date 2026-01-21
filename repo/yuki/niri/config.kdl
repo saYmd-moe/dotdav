@@ -76,9 +76,7 @@ input {
     // 移动鼠标时自动对焦窗口和输出
     // focus-follows-mouse max-scroll-amount="0%"
 }
-// 包含布局和颜色配置文件，由 dms 提供
-include "dms/layout.kdl"
-include "dms/colors.kdl"
+
 
 // 可按名称配置输出，使用 `niri msg outputs` 获取名称
 // 内置笔记本显示器通常称为 "eDP-1"
@@ -192,16 +190,29 @@ cursor {
     default-column-width {}
 }
 
+// Workspace settings.
+workspace "work"
+workspace "media"
+workspace "chat"
+workspace "game"
+
 // Buttercup 浮动打开
 window-rule {
     match app-id="Buttercup"
     open-floating true
 }
-
+window-rule {
+    match app-id="Zotero"
+    open-floating true
+    default-floating-position x=20 y=20 relative-to="bottom-right"
+    open-focused false
+    open-on-workspace "work"
+}
 // QQ
 window-rule {
     match app-id="QQ"
     default-column-width { proportion 0.75; }
+    open-on-workspace "chat"
 }
 // 资料卡悬浮显示
 window-rule {
@@ -218,11 +229,19 @@ window-rule {
 window-rule {
     match app-id="wechat"
     default-column-width { proportion 0.75; }
+    open-on-workspace "chat"
 }
 // 图片查看器悬浮显示
 window-rule {
     match app-id="wechat" title="图片和视频"
     open-floating true
+}
+window-rule {
+    match app-id="org.telegram.desktop"
+    default-column-width {
+        proportion 0.75
+    }
+    open-on-workspace "chat"
 }
 
 // 以浮窗形式打开 Microsoft-edge 画中画播放器
@@ -249,20 +268,6 @@ layer-rule {
     place-within-backdrop true
 }
 
-// zotero
-window-rule {
-    match app-id=r#"^Zotero$"#
-
-
-    open-floating true
-    
-    default-column-width { fixed 400; }
-    default-window-height { fixed 150; }
-    default-floating-position x=20 y=20 relative-to="bottom-right"
-
-    open-focused false
-
-}
 
 // 快捷键绑定
 binds {
@@ -516,3 +521,7 @@ binds {
       spawn "dms" "ipc" "call" "notepad" "toggle";
    }
 }
+
+// 包含布局和颜色配置文件，由 dms 提供
+include "dms/layout.kdl"
+include "dms/colors.kdl"

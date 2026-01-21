@@ -1,18 +1,34 @@
-// This config is in the KDL format: https://kdl.dev
-// "/-" comments out the following node.
-// Check the wiki for a full description of the configuration:
+// 此配置使用 KDL 格式: https://kdl.dev
+// "/-" 注释掉下面的节点
+// 查看 wiki 获取完整的配置说明:
 // https://yalter.github.io/niri/Configuration:-Introduction
-// Environment variables to set for niri and its children.
-// You can use this to set locale variables, for example.
+
+// Niri 环境变量
 environment {
     XDG_CURRENT_DESKTOP "niri"
+
+    // 设置语言为中文 UTF-8
+    LANG "zh_CN.UTF-8"
+
+    // 设置默认输入法为 fcitx5
+    XMODIFIERS "@im=fcitx"
+    QT_IM_MODULE "fcitx"
+
+    // 令 QT 软件通过 wayland运行
     QT_QPA_PLATFORM "wayland"
+    // QT5 自动缩放
+    QT_AUTO_SCREEN_SCALE_FACTOR "1"
+
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     QT_QPA_PLATFORMTHEME "gtk3"
     QT_QPA_PLATFORMTHEME_QT6 "gtk3"
+
+    // 默认编辑器
+    EDITOR "nvim"
 }
-// Input device configuration.
-// Find the full list of options on the wiki:
+
+// 输入设备配置
+// 在 wiki 上查看完整选项列表:
 // https://yalter.github.io/niri/Configuration:-Input
 input {
     keyboard {
@@ -22,7 +38,7 @@ input {
             // For example:
             // layout "us,ru"
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
-            options "caps:ctrl_modifier"
+            options "caps:ctrl_modifier,ctrl:nocaps"
  // If this section is empty, niri will fetch xkb settings
             // from org.freedesktop.locale1. You can control these using
             // localectl set-x11-keymap.
@@ -160,6 +176,11 @@ window-rule {
 }
 window-rule {
     match app-id="^QQ$" title="^图片查看器$"
+    open-floating true
+}
+// 资料卡悬浮显示
+window-rule {
+    match app-id="QQ" title="资料卡"
     open-floating true
 }
 window-rule {

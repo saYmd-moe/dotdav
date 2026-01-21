@@ -9,3 +9,4 @@ files:
     yuki: yuki/niri
   .gitconfig:
     default: default/.gitconfig
+    yuki: yuki/.gitconfig

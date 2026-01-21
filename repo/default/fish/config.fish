@@ -10,3 +10,6 @@ if test -d /usr/local/texlive/$tex_year/bin/x86_64-linux
     set -gx MANPATH /usr/local/texlive/$tex_year/texmf-dist/doc/man $MANPATH
     set -gx INFOPATH /usr/local/texlive/$tex_year/texmf-dist/doc/info $INFOPATH
 end
+
+# uv
+fish_add_path "/home/yuki/.local/bin"

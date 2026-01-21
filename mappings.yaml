@@ -1,5 +1,6 @@
 files:
   .config/fcitx5:
+    default: default/fcitx5
     yuki: yuki/fcitx5
   .config/fish:
     default: default/fish

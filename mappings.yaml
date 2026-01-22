@@ -1,4 +1,6 @@
 files:
+  .config/ai_skills:
+    default: default/ai_skills
   .config/fcitx5:
     default: default/fcitx5
     yuki: yuki/fcitx5

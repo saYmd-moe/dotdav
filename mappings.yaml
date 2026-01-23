@@ -13,3 +13,5 @@ files:
   .gitconfig:
     default: default/.gitconfig
     yuki: yuki/.gitconfig
+  Documents/CodeProjects/dotdav/repo/default/ai_skills:
+    yuki: yuki/ai_skills

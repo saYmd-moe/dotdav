@@ -141,7 +141,7 @@ workspace "game"
 window-rule {
     match app-id="^kitty$"
     default-column-width {
-        proportion 0.3
+        proportion 0.4
     }
 }
 window-rule {
@@ -159,6 +159,16 @@ open-focused true
 window-rule {
     match app-id="^obsidian$"
     open-on-workspace "work"
+    default-column-width {
+        proportion 0.6
+    }
+}
+window-rule {
+    match app-id="^antigravity$"
+    open-on-workspace "work"
+    default-column-width {
+        proportion 0.6
+    }
 }
 window-rule {
     match app-id="^Cider$"
@@ -170,7 +180,7 @@ window-rule {
 window-rule {
     match app-id="^QQ$"
     default-column-width {
-        proportion 0.75
+        proportion 0.6
     }
     open-on-workspace "chat"
 }
@@ -186,7 +196,7 @@ window-rule {
 window-rule {
     match app-id="^wechat$"
     default-column-width {
-        proportion 0.75
+        proportion 0.6
     }
     open-on-workspace "chat"
 }
@@ -219,7 +229,7 @@ window-rule {
 window-rule {
     match app-id="^firefox$"
     default-column-width {
-        proportion 1.0
+        proportion 0.6
     }
 }
 binds {

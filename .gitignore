@@ -9,3 +9,10 @@ wheels/
 # Virtual environments
 .venv
 config.local.yaml
+
+# AI Agent Compatibility Layers
+.agent/
+.claude/
+
+# Keep the source of truth
+!.github/skills/

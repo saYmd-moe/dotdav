@@ -525,8 +525,3 @@ binds {
 // 包含布局和颜色配置文件，由 dms 提供
 include "dms/layout.kdl"
 include "dms/colors.kdl"
-
-include "dms/outputs.kdl"
-include "dms/binds.kdl"
-
-include "dms/cursor.kdl"

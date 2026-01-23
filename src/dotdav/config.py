@@ -31,17 +31,22 @@ class Config:
                 self.data.update(local_data)
 
     def save(self):
-        # Always save changes to local config to avoid polluting shared config
-        # We need to read existing local config first to preserve keys we might not track in self.data 
-        # (though currently self.data seems to hold everything)
-        # Ideally, we only save what is different from defaults or base? 
-        # For simple implementation: save all current state to local config.
-        # OR: To be cleaner, we might want to only save *changed* values, 
-        # but tracking changes is complex. 
-        # Let's save the entire current state to local config as it overrides everything anyway.
-        
+        # Load base config to determine what is different
+        base_data = {}
+        if CONFIG_FILE.exists():
+            with open(CONFIG_FILE, "r") as f:
+                base_data = yaml.safe_load(f) or {}
+
+        # Calculate diffs
+        local_data = {}
+        for key, value in self.data.items():
+            # Save if key is not in base, or if value is different from base
+            if key not in base_data or base_data[key] != value:
+                local_data[key] = value
+
+        # Write to local config
         with open(LOCAL_CONFIG_FILE, "w") as f:
-            yaml.safe_dump(self.data, f)
+            yaml.safe_dump(local_data, f)
     
     def get(self, key):
         return self.data.get(key)
